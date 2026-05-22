@@ -69,3 +69,4 @@ The application seeds two test users on startup:
 | `DATABASE_URL` | `mongodb://localhost:27017/sgarden` | MongoDB connection string |
 | `PORT` | `4000` | Server port |
 | `SERVER_SECRET` | `sgarden-secret-key` | JWT signing secret |
+
