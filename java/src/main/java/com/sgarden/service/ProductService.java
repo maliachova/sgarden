@@ -1,12 +1,16 @@
 package com.sgarden.service;
 
 import com.sgarden.dto.ProductRequest;
+import com.sgarden.dto.ProductListResponse;
 import com.sgarden.dto.ProductStatsResponse;
 import com.sgarden.model.Product;
 import com.sgarden.repository.ProductRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +42,19 @@ public class ProductService {
     public Optional<Product> getProductById(String id) {
         System.out.println("Fetching product: " + id);
         return productRepository.findById(id);
+    }
+
+    public ProductListResponse getProducts(int page, int limit, String sort, String order) {
+        int safePage = Math.max(1, page);
+        int safeLimit = Math.max(1, limit);
+
+        Sort.Direction direction = "desc".equalsIgnoreCase(order) ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sortSpec = (sort == null || sort.isBlank())
+                ? Sort.by(Sort.Direction.ASC, "name")
+                : Sort.by(direction, sort);
+
+        Page<Product> productPage = productRepository.findAll(PageRequest.of(safePage - 1, safeLimit, sortSpec));
+        return new ProductListResponse(productPage.getContent(), safePage, safeLimit, productRepository.count());
     }
 
     public Product createProduct(ProductRequest request) {

@@ -1,6 +1,7 @@
 package com.sgarden.controller;
 
 import com.sgarden.dto.ErrorResponse;
+import com.sgarden.dto.ProductListResponse;
 import com.sgarden.dto.ProductRequest;
 import com.sgarden.dto.ProductStatsResponse;
 import com.sgarden.model.Product;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -28,8 +28,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+    public ResponseEntity<ProductListResponse> getAllProducts(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int limit,
+            @RequestParam(required = false) String sort,
+            @RequestParam(defaultValue = "asc") String order) {
+        return ResponseEntity.ok(productService.getProducts(page, limit, sort, order));
     }
 
     @GetMapping("/stats")
