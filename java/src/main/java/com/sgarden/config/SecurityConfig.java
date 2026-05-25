@@ -39,6 +39,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/health").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/orders", "/api/orders/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/api/orders").permitAll()
                         // SECURITY ISSUE: system endpoints are public (no auth required)
                         .requestMatchers("/api/users/system/**").permitAll()
                         .requestMatchers("/api/users/hash").permitAll()
