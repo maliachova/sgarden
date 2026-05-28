@@ -14,7 +14,6 @@ Both implementations expose the **same API contract** and connect to the same Mo
 - **Python track:** Python 3.10+, pip
 
 ## Quick Start
-
 ### Java (Spring Boot)
 
 ```bash
