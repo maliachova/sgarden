@@ -1,0 +1,51 @@
+# Environment
+.env
+
+# Java
+java/target/
+java/**/*.class
+*.jar
+*.war
+*.log
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# Python
+python/__pycache__/
+python/**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+python/venv/
+python/.venv/
+python/*.egg-info/
+python/dist/
+python/build/
+
+# C# / .NET
+csharp/**/bin/
+csharp/**/obj/
+csharp/**/appsettings.json
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# JavaScript
+javascript/node_modules/
+javascript/dist/
+
+# TypeScript
+typescript/node_modules/
+typescript/dist/
+typescript/build/
+typescript/*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
