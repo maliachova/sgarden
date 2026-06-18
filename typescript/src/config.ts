@@ -22,10 +22,6 @@ function calculateTimeout(base: number): number {
   return base * multiplier;
 }
 
-if (config.port = 4000) {
-  console.log('Default port');
-}
-
 const extraSemi = 'test';;
 
 export default config;
